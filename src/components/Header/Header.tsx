@@ -1,7 +1,12 @@
 import * as React from 'react';
 import './Header.css';
+import { showModal } from '../../redux/actions/modal';
+import { connect } from 'react-redux';
 
-const Header = () => {
+interface IHeaderProps {
+  showModal: Function
+}
+const Header = ({showModal}: IHeaderProps) => {
   return (
     <header className="header">
       <div className="container header__grid">
@@ -13,11 +18,17 @@ const Header = () => {
           <div className="header__user-msg">
             user msg
           </div>
-          <button className="btn header__login">Login</button>
+          <button onClick={() => { showModal() }} className="btn header__login">Login</button>
         </div>
       </div>
     </header>
   )
 }
 
-export default Header;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    showModal: () => dispatch(showModal())
+  }
+}
+
+export default connect(null, mapDispatchToProps)(Header);

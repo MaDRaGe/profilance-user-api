@@ -1,4 +1,4 @@
-import { SHOW_MODAL } from "../actions/modal";
+import { SHOW_MODAL, HIDE_MODAL } from "../actions/modal";
 
 const initialState = {
   isShown: false
@@ -10,6 +10,11 @@ const modalReducer = (state = initialState, action) => {
       return {
         ...state,
         isShown: true
+      }
+    case HIDE_MODAL:
+      return {
+        ...state,
+        isShown: false
       }
     default:
       return state;
