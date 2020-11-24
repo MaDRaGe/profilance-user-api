@@ -33,4 +33,7 @@ body {
 
 .btn {
   background: var(--primary-color);
+  color: #fff;
+  border: none;
+  cursor: pointer;
 }
