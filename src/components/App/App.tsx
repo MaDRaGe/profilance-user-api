@@ -1,9 +1,17 @@
 import * as React from 'react';
-import './style.css';
+import Header from '../Header/Header';
+import './styles/style.css';
 
 const App = () => {
   return (
-    <h1>app</h1>
+    <div className="app">
+      <Header />
+      <main className="content">
+        <div className="container">
+
+        </div>
+      </main>
+    </div>
   )
 }
 
