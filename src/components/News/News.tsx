@@ -1,10 +1,12 @@
 import * as React from 'react';
+import NewsFilter from './NewsFilter/NewsFilter';
 import './News.css';
 
 const News = () => {
   return (
     <div className="news-section">
       <h2>News</h2>
+      <NewsFilter />
       <div className="news-section__list">
         <div className="news">
           <div className="news__header">
