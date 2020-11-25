@@ -4,9 +4,11 @@ import { showModal } from '../../redux/actions/modal';
 import { connect } from 'react-redux';
 
 interface IHeaderProps {
-  showModal: Function
+  showModal: Function,
+  username: String
 }
-const Header = ({showModal}: IHeaderProps) => {
+const Header = ({showModal, username}: IHeaderProps) => {
+  const userMsg = username ? `Hello, ${username}` : 'Hello, guest'
   return (
     <header className="header">
       <div className="container header__grid">
@@ -16,7 +18,7 @@ const Header = ({showModal}: IHeaderProps) => {
         </nav>
         <div className="header__user-bar">
           <div className="header__user-msg">
-            user msg
+            { userMsg }
           </div>
           <button onClick={() => { showModal() }} className="btn header__login">Login</button>
         </div>
@@ -25,10 +27,16 @@ const Header = ({showModal}: IHeaderProps) => {
   )
 }
 
+const mapStateToProps = (state) => {
+  return {
+    username: state.user.username
+  }
+}
+
 const mapDispatchToProps = (dispatch) => {
   return {
     showModal: () => dispatch(showModal())
   }
 }
 
-export default connect(null, mapDispatchToProps)(Header);
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
