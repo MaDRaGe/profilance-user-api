@@ -1,5 +1,5 @@
 export const FILTER_NEWS = 'FILTER_NEWS';
-export const GET_NEWS_BY_ID = 'GET_NEWS_BY_ID';
+export const CREATE_NEWS = 'CREATE_NEWS';
 
 export interface INews {
   id: number;
@@ -23,17 +23,17 @@ export const filterNews = (filterValue: String): IFilterNewsAction => {
   }
 }
 
-export interface IGetNewsByIdAction {
-  type: typeof GET_NEWS_BY_ID,
+export interface ICreateNewsAction {
+  type: typeof CREATE_NEWS,
   payload: {
-    newsId: number
+    news: INews
   }
 }
-export const getNewsById = (newsId: number) => {
+export const createNews = (news: INews): ICreateNewsAction => {
   return {
-    type: typeof GET_NEWS_BY_ID,
+    type: CREATE_NEWS,
     payload: {
-      newsId
+      news
     }
   }
 }

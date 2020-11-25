@@ -1,4 +1,4 @@
-import { FILTER_NEWS, INews } from '../actions/news';
+import { FILTER_NEWS, INews, CREATE_NEWS } from '../actions/news';
 
 interface INewsReducerInitialState {
   newsList: INews[],
@@ -39,6 +39,22 @@ const newsReducer = (state: INewsReducerInitialState = initialState, action): IN
       return {
         ...state,
         newsToShowId: filteredNewsId
+      }
+    case CREATE_NEWS:
+      console.log(action)
+      return {
+        ...state,
+        newsToShowId: [
+          ...state.newsToShowId,
+          state.newsList[state.newsList.length - 1].id + 1
+        ],
+        newsList: [
+          ...state.newsList,
+          {
+            id: state.newsList[state.newsList.length - 1].id + 1,
+            ...action.payload.news
+          }
+        ]
       }
     default: 
       return state;

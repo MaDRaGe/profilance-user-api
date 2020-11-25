@@ -3,6 +3,7 @@ import Header from '../Header/Header';
 import Modal from '../Modal/Modal';
 import News from '../News/News';
 import Home from '../Home/Home';
+import NewsCreate from '../NewsCreate/NewsCreate';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import './styles/style.css';
 
@@ -16,6 +17,7 @@ const App = () => {
           <Switch>
             <Route exact path="/news" component={News} />
             <Route exact path="/" component={Home}/>
+            <Route exact path="/news/create" component={NewsCreate}/>
             <Route path="*" render={() => (<Redirect to="/"/>)}/>
           </Switch>
         </div>
