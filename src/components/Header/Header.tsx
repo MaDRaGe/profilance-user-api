@@ -2,24 +2,21 @@ import * as React from 'react';
 import './Header.css';
 import { showModal } from '../../redux/actions/modal';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 interface IHeaderProps {
   showModal: Function,
-  username: String
 }
-const Header = ({showModal, username}: IHeaderProps) => {
-  const userMsg = username ? `Hello, ${username}` : 'Hello, guest'
+const Header = ({showModal}: IHeaderProps) => {
   return (
     <header className="header">
       <div className="container header__grid">
         <nav className="header__nav">
-          <a className="header__link" href="/">Home</a>
-          <a className="header__link" href="/news">News</a>
+          <Link className="header__link" to="/">Home</Link>
+          <Link className="header__link" to="/news">News</Link>
         </nav>
         <div className="header__user-bar">
-          <div className="header__user-msg">
-            { userMsg }
-          </div>
+          
           <button onClick={() => { showModal() }} className="btn header__login">Login</button>
         </div>
       </div>
@@ -27,11 +24,7 @@ const Header = ({showModal, username}: IHeaderProps) => {
   )
 }
 
-const mapStateToProps = (state) => {
-  return {
-    username: state.user.username
-  }
-}
+
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -39,4 +32,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+export default connect(null, mapDispatchToProps)(Header);

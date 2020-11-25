@@ -6,10 +6,11 @@ import { hideModal } from '../../redux/actions/modal';
 
 interface IModalProps {
   isModalShown: boolean,
-  hideModal: Function
+  hideModal: Function,
+  isLoginSuccess: Boolean
 }
-const Modal = ({isModalShown, hideModal}: IModalProps) => {
-  if (isModalShown) {
+const Modal = ({isModalShown, hideModal, isLoginSuccess}: IModalProps) => {
+  if (isModalShown && !isLoginSuccess) {
     return (
       <div className="modal">
         <div className="container">
@@ -34,7 +35,8 @@ const Modal = ({isModalShown, hideModal}: IModalProps) => {
 
 const mapStateToProps = (state) => {
   return {
-    isModalShown: state.modal.isShown
+    isModalShown: state.modal.isShown,
+    isLoginSuccess: state.user.isLoginSuccess
   }
 }
 

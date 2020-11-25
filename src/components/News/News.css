@@ -1,0 +1,18 @@
+.news-section__list {
+  margin-top: 15px;
+}
+
+.news {
+  margin-top: 15px;
+  padding: 20px;
+  border: 1px solid white;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.news__title {
+  margin-right: 15px;
+}
+
+.news__header {
+  display: flex;
+}
