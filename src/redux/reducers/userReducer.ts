@@ -2,9 +2,11 @@ import { IUserActionTypes, LOGIN_USER_SUCCESS, LOGIN_USER_FAIL } from '../action
 
 interface IUserReducerInitialState {
   username: String;
+  isLoginSuccess: Boolean | null;
 }
 const initialState: IUserReducerInitialState = {
   username: '',
+  isLoginSuccess: null
 }
 
 const userReducer = (state: IUserReducerInitialState = initialState, action: IUserActionTypes) => {

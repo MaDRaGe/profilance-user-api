@@ -5,9 +5,10 @@ import { connect } from 'react-redux';
 import './Login.css';
 
 interface ILoginProps {
-  loginUser: Function
+  loginUser: Function,
+  isLoginSuccess: Boolean
 }
-const Login = ({loginUser}: ILoginProps) => {
+const Login = ({loginUser, isLoginSuccess}: ILoginProps) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
@@ -19,9 +20,17 @@ const Login = ({loginUser}: ILoginProps) => {
     })
   }
 
+  const logUserNotFoundView = isLoginSuccess === false ? 
+    <div className="log error">
+      User not found, please check username or password
+    </div> : <></>;
+
   return (
     <div className="login">
       <h2>Login</h2>
+      <div className="login__log">
+        {logUserNotFoundView}
+      </div>
       <form onSubmit={onSubmit} className="login__form form">
         <div className="input">
           <div className="input__header">
@@ -49,10 +58,16 @@ const Login = ({loginUser}: ILoginProps) => {
   )
 }
 
+const mapStateToProps = (state) => {
+  return {
+    isLoginSuccess: state.user.isLoginSuccess
+  }
+}
+
 const mapDispatchToProps = (dispatch) => {
   return {
     loginUser: (loginUserInfo: IUserLoginInfo) => dispatch(loginUser(loginUserInfo))
   }
 }
 
-export default connect(null, mapDispatchToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
